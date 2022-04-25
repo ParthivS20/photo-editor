@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background: gray;
 }
 
 .App {
@@ -16,6 +17,8 @@ body {
   flex-direction: column;
   align-items: center;
   width: 40vw;
+  justify-content: center;
+  gap: 10px;
 }
 
 .output {
@@ -23,6 +26,7 @@ body {
   width: 60vw;
   overflow: hidden;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -49,6 +53,151 @@ body {
   line-height: 10%;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .attributes > p {
   text-align: right;
+}
+
+.save {
+  border: none;
+  width: 10%;
+  height: 4%;
+  font-size: 140%;
+  background: green;
+  color: white;
+  border-radius: 8px;
+  transition: background-color 150ms;
+  cursor: pointer;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  display: inline-block;
+  padding: 10px 60px;
+  cursor: pointer;
+  background-color: #29b7a1;
+  border-radius: 6px;
+  color: white;
+  transition: 200ms;
+  font-size: 20px;
+}
+
+.cloud {
+  margin-right: 4px;
+}
+
+.custom-file-upload:hover {
+  color: black;
+  background-color: #69fadf;
+}
+
+.save:hover {
+  background: #206420;
+}
+
+.file-name {
+  height: 25px;
+  line-height: 25px;
+  color: white;
+  font-size: 18px;
+}
+
+.file-name.empty {
+  text-decoration: none;
+}
+
+.image-info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: -4px;
+  margin-bottom: 5px;
+}
+
+input[type='text'], input[type='datetime-local'], input[type='number'] {
+  background-color: #038a79;
+  color: white;
+  outline: none;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 10px;
+}
+
+input::placeholder {
+  color: black;
+}
+
+.input-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 3%;
+}
+
+.reload {
+  width: 14px;
+  transition: 150ms;
+  cursor: pointer;
+}
+
+.reload.special {
+  margin-left: 5px;
+  width: 20px;
+}
+
+.reload:hover {
+  color: white;
+}
+
+.reset {
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 20%;
+  transition: 150ms;
+  margin-top: 20px;
+}
+
+.reset:hover {
+  background-color: #313131;
+}
+
+.range-label {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.range-title {
+  margin-left: 2px;
+}
+
+.range-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  gap: 6px;
+}
+
+input[type='range'] {
+  width: 100%;
+}
+
+.range-container > span {
+  width: 14px;
+  margin-right: 4px;
 }
