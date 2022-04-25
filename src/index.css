@@ -29,6 +29,7 @@ body {
 
 .image-container {
   position: relative;
+  padding: 0;
 }
 
 .image-container > img {

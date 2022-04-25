@@ -1,6 +1,7 @@
 import './App.css';
 import {useState} from "react";
 import ImageUpload from "./components/ImageUpload";
+import html2canvas from "html2canvas";
 
 function App() {
     const [image, setImage] = useState(null);
@@ -19,7 +20,7 @@ function App() {
     const getImageWidth = () => {
         if(!image) return;
         if(image.width < image.height) {
-            return `calc(${maxImageHeight} * ${image.width / image.height})`;
+            return `calc(${maxImageHeight} * (${image.width}px / ${image.height}px))`;
         }
         return maxImageWidth;
     }
@@ -27,7 +28,7 @@ function App() {
     const getImageHeight = () => {
         if(!image) return;
         if(image.height < image.width) {
-            return `calc(${maxImageWidth} * ${image.height / image.width})`;
+            return `calc(${maxImageWidth} * (${image.height}px / ${image.width}px)))`;
         }
         return maxImageHeight;
     }
@@ -62,6 +63,37 @@ function App() {
         return (city + " " + state + " " + zipCode)
     }
 
+    const handleSave = () => {
+        html2canvas(document.querySelector("#capture")).then(canvas => {
+            saveAs(canvas.toDataURL(), 'image.png');
+        });
+
+        function saveAs(uri, filename) {
+
+            var link = document.createElement('a');
+
+            if (typeof link.download === 'string') {
+
+                link.href = uri;
+                link.download = filename;
+
+                //Firefox requires the link to be in the body
+                document.body.appendChild(link);
+
+                //simulate click
+                link.click();
+
+                //remove the link when done
+                document.body.removeChild(link);
+
+            } else {
+
+                window.open(uri);
+
+            }
+        }
+    }
+
     return (
         <div className="App">
             <div className={'info'}>
@@ -78,7 +110,7 @@ function App() {
             <div className={'output'}>
                 {
                     image && (
-                        <div className={'image-container'} style={{width: getImageWidth(), height: getImageHeight()}}>
+                        <div className={'image-container'} style={{width: getImageWidth(), height: getImageHeight()}} id={'capture'}>
                             <img src={image.src} alt={'uploaded'}/>
                             <div className={'attributes'}>
                                 {date && <p>Network:{getDate()}</p>}
@@ -91,6 +123,7 @@ function App() {
                         </div>
                     )
                 }
+                {image && <button onClick={handleSave}>Save</button>}
             </div>
         </div>
     );
